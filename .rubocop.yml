@@ -1,0 +1,9 @@
+inherit_gem:
+  rubocop-shopify: rubocop.yml
+
+Style/Documentation:
+  Enabled: false
+
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
