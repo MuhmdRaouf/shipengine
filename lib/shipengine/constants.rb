@@ -19,6 +19,7 @@ module ShipEngine
       :carriers,
       :shipsurance,
       :labels,
+      :warehouses,
       keyword_init: true
     )
     Addresses = Struct.new(
@@ -52,6 +53,10 @@ module ShipEngine
       :purchase_label_with_shipment_id,
       keyword_init: true
     )
+    Warehouses = Struct.new(
+      :root,
+      keyword_init: true
+    )
 
     PATHS = Paths.new(
       v1: NamespaceV1.new(
@@ -80,6 +85,9 @@ module ShipEngine
           purchase_label_with_rate_id: "/v1/labels/rates",
           purchase_label_with_shipment_id: "/v1/labels/shipment",
         ),
+        warehouses: Warehouses.new(
+          root: "/v1/warehouses",
+        )
       )
     )
 
