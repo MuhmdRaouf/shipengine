@@ -4,7 +4,7 @@ require "ostruct"
 
 module ShipEngine
   module Constants
-    API_KEY = ENV.fetch("API_KEY", "")
+    API_KEY = ENV.fetch("API_KEY", "TEST_35vcTMIX0/e7rs1t86zzYwF+tnq2jrYewIyRZp+pxAs")
 
     PROD_URL = "https://api.shipengine.com"
 

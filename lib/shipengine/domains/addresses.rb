@@ -10,7 +10,7 @@ module ShipEngine
       end
 
       def parse_address(address)
-        response = @client.post(
+        response = @client.put(
           path: ShipEngine::Constants::PATHS.v1.addresses.parse_address,
           options: address
         )

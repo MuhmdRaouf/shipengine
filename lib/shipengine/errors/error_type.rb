@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ShipEngine
-  module Exceptions
+  module Errors
     ##
     ##  This class has the ability to return a specific error type.
     # #/

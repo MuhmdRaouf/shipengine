@@ -12,7 +12,7 @@ RSpec.describe(ShipEngine::Client) do
     }]
   end
 
-  let(:expected_params) do
+  let(:expected_response) do
     {
       request_id: "3f592c95-9574-49ba-86a0-bc49771834f9",
       errors: [{
@@ -33,7 +33,7 @@ RSpec.describe(ShipEngine::Client) do
       request = stub_request(
         :post,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.addresses.validate_address}"
-      ).with(body: params).to_return(status: 400, body: expected_params.to_json)
+      ).with(body: params).to_return(status: 400, body: expected_response.to_json)
 
       expect do
         addresses.validate_address(params)
@@ -45,7 +45,7 @@ RSpec.describe(ShipEngine::Client) do
       request = stub_request(
         :post,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.addresses.validate_address}"
-      ).with(body: params).to_return(status: 401, body: expected_params.to_json)
+      ).with(body: params).to_return(status: 401, body: expected_response.to_json)
 
       expect do
         addresses.validate_address(params)
@@ -57,7 +57,7 @@ RSpec.describe(ShipEngine::Client) do
       request = stub_request(
         :post,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.addresses.validate_address}"
-      ).with(body: params).to_return(status: 404, body: expected_params.to_json)
+      ).with(body: params).to_return(status: 404, body: expected_response.to_json)
 
       expect do
         addresses.validate_address(params)
@@ -69,7 +69,7 @@ RSpec.describe(ShipEngine::Client) do
       request = stub_request(
         :post,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.addresses.validate_address}"
-      ).with(body: params).to_return(status: 500, body: expected_params.to_json)
+      ).with(body: params).to_return(status: 500, body: expected_response.to_json)
 
       expect do
         addresses.validate_address(params)
@@ -81,7 +81,7 @@ RSpec.describe(ShipEngine::Client) do
       request = stub_request(
         :post,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.addresses.validate_address}"
-      ).with(body: params).to_return(status: 502, body: expected_params.to_json)
+      ).with(body: params).to_return(status: 502, body: expected_response.to_json)
 
       expect do
         addresses.validate_address(params)
@@ -93,7 +93,7 @@ RSpec.describe(ShipEngine::Client) do
       request = stub_request(
         :post,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.addresses.validate_address}"
-      ).with(body: params).to_return(status: 503, body: expected_params.to_json)
+      ).with(body: params).to_return(status: 503, body: expected_response.to_json)
 
       expect do
         addresses.validate_address(params)
@@ -105,7 +105,7 @@ RSpec.describe(ShipEngine::Client) do
       request = stub_request(
         :post,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.addresses.validate_address}"
-      ).with(body: params).to_return(status: 504, body: expected_params.to_json)
+      ).with(body: params).to_return(status: 504, body: expected_response.to_json)
 
       expect do
         addresses.validate_address(params)
@@ -117,7 +117,7 @@ RSpec.describe(ShipEngine::Client) do
       request = stub_request(
         :post,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.addresses.validate_address}"
-      ).with(body: params).to_return(status: 429, body: expected_params.to_json)
+      ).with(body: params).to_return(status: 429, body: expected_response.to_json)
 
       expect do
         addresses.validate_address(params)

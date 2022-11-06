@@ -59,7 +59,7 @@ module ShipEngine
           request.url(path, options)
         elsif [:post, :put].include?(method)
           request.path = path
-          request.body = options unless options.empty?
+          request.body = options if !options.nil? && !options.empty?
         end
       end
     end

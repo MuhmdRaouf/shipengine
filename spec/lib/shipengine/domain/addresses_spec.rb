@@ -3,14 +3,6 @@
 RSpec.describe(ShipEngine::Domain::Addresses) do
   let(:addresses) { ShipEngine::Domain::Addresses.new }
 
-  before(:all) do
-    WebMock.enable_net_connect!
-  end
-
-  after(:all) do
-    WebMock.disable_net_connect!
-  end
-
   context "Parse an address" do
     it "should parse address from text" do
       params = {
@@ -104,7 +96,14 @@ RSpec.describe(ShipEngine::Domain::Addresses) do
         ],
       }
 
+      request = stub_request(
+        :put,
+        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.addresses.parse_address}"
+      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+
       response = addresses.parse_address(params)
+
+      assert_requested(request, times: 1)
 
       expect(response.score).to(eq(expected_response[:score]))
 
@@ -262,7 +261,14 @@ RSpec.describe(ShipEngine::Domain::Addresses) do
         ],
       }
 
+      request = stub_request(
+        :put,
+        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.addresses.parse_address}"
+      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+
       response = addresses.parse_address(params)
+
+      assert_requested(request, times: 1)
 
       expect(response.score).to(eq(expected_response[:score]))
 
@@ -366,7 +372,14 @@ RSpec.describe(ShipEngine::Domain::Addresses) do
         messages: [],
       }]
 
+      request = stub_request(
+        :post,
+        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.addresses.validate_address}"
+      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+
       response = addresses.validate_address(params)
+
+      assert_requested(request, times: 1)
 
       expect(response[0].status).to(eq(expected_response[0][:status]))
 
@@ -438,7 +451,14 @@ RSpec.describe(ShipEngine::Domain::Addresses) do
         ],
       }]
 
+      request = stub_request(
+        :post,
+        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.addresses.validate_address}"
+      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+
       response = addresses.validate_address(params)
+
+      assert_requested(request, times: 1)
 
       expect(response[0].status).to(eq(expected_response[0][:status]))
 
@@ -523,7 +543,14 @@ RSpec.describe(ShipEngine::Domain::Addresses) do
         ],
       }]
 
+      request = stub_request(
+        :post,
+        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.addresses.validate_address}"
+      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+
       response = addresses.validate_address(params)
+
+      assert_requested(request, times: 1)
 
       expect(response[0].status).to(eq(expected_response[0][:status]))
 
@@ -618,7 +645,14 @@ RSpec.describe(ShipEngine::Domain::Addresses) do
         ],
       }]
 
+      request = stub_request(
+        :post,
+        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.addresses.validate_address}"
+      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+
       response = addresses.validate_address(params)
+
+      assert_requested(request, times: 1)
 
       expect(response[0].status).to(eq(expected_response[0][:status]))
 
