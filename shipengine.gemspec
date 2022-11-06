@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.email                  = ["mohammed@raouf.me"]
   spec.authors                = ["Mohammed Abdel Raouf"]
 
-  spec.version                = ShipEngine::VERSION
+  spec.version                = ShipEngine::VERSION::VERSION
   spec.platform               = Gem::Platform::RUBY
   spec.required_ruby_version  = ">= 2.5"
 

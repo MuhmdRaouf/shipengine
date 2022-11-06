@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe(ShipEngine) do
+RSpec.describe(ShipEngine::VERSION) do
   it "should contain version number" do
-    expect(ShipEngine::VERSION).to(be("0.0.1"))
+    expect(ShipEngine::VERSION::VERSION).to(be("0.0.1"))
   end
 end

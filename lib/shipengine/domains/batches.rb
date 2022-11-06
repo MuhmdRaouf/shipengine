@@ -11,7 +11,7 @@ module ShipEngine
 
       def list_batches(params: {})
         response = @client.get(
-          path: ShipEngine::Constants::PATHS.v1.batches.path,
+          path: ShipEngine::Constants::PATHS.v1.batches.root,
           options: params
         )
 
@@ -20,7 +20,7 @@ module ShipEngine
 
       def create_batch(params:)
         response = @client.post(
-          path: ShipEngine::Constants::PATHS.v1.batches.path,
+          path: ShipEngine::Constants::PATHS.v1.batches.root,
           options: params
         )
 
@@ -38,7 +38,7 @@ module ShipEngine
 
       def delete_batch_by_id(batch_id:, params: {})
         response = @client.delete(
-          path: "#{ShipEngine::Constants::PATHS.v1.batches.path}/#{batch_id}",
+          path: "#{ShipEngine::Constants::PATHS.v1.batches.root}/#{batch_id}",
           options: params
         )
 
@@ -47,7 +47,7 @@ module ShipEngine
 
       def batch_by_id(batch_id:, params: {})
         response = @client.get(
-          path: "#{ShipEngine::Constants::PATHS.v1.batches.path}/#{batch_id}",
+          path: "#{ShipEngine::Constants::PATHS.v1.batches.root}/#{batch_id}",
           options: params
         )
 
@@ -56,7 +56,7 @@ module ShipEngine
 
       def update_batch_by_id(batch_id:, params: {})
         response = @client.put(
-          path: "#{ShipEngine::Constants::PATHS.v1.batches.path}/#{batch_id}",
+          path: "#{ShipEngine::Constants::PATHS.v1.batches.root}/#{batch_id}",
           options: params
         )
 
@@ -65,7 +65,7 @@ module ShipEngine
 
       def add_to_batch(batch_id:, params: {})
         response = @client.post(
-          path: "#{ShipEngine::Constants::PATHS.v1.batches.path}/#{batch_id}/add",
+          path: "#{ShipEngine::Constants::PATHS.v1.batches.root}/#{batch_id}/add",
           options: params
         )
 
@@ -74,7 +74,7 @@ module ShipEngine
 
       def batch_errors(batch_id:, params: {})
         response = @client.get(
-          path: "#{ShipEngine::Constants::PATHS.v1.batches.path}/#{batch_id}/errors",
+          path: "#{ShipEngine::Constants::PATHS.v1.batches.root}/#{batch_id}/errors",
           options: params
         )
 
@@ -83,7 +83,7 @@ module ShipEngine
 
       def process_batch_id_labels(batch_id:, params: {})
         response = @client.post(
-          path: "#{ShipEngine::Constants::PATHS.v1.batches.path}/#{batch_id}/process/labels",
+          path: "#{ShipEngine::Constants::PATHS.v1.batches.root}/#{batch_id}/process/labels",
           options: params
         )
 
@@ -92,7 +92,7 @@ module ShipEngine
 
       def remove_from_batch(batch_id:, params: {})
         response = @client.post(
-          path: "#{ShipEngine::Constants::PATHS.v1.batches.path}/#{batch_id}/remove",
+          path: "#{ShipEngine::Constants::PATHS.v1.batches.root}/#{batch_id}/remove",
           options: params
         )
 

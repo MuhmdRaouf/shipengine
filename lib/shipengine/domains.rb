@@ -2,3 +2,5 @@
 
 require "shipengine/domains/addresses"
 require "shipengine/domains/batches"
+require "shipengine/domains/carriers"
+require "shipengine/domains/carriers_accounts"

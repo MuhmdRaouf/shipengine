@@ -8,10 +8,36 @@ module ShipEngine
 
     PROD_URL = "https://api.shipengine.com"
 
-    Paths = Struct.new(:v1, keyword_init: true)
-    NamespaceV1 = Struct.new(:addresses, :batches, keyword_init: true)
-    Addresses = Struct.new(:parse_address, :validate_address, keyword_init: true)
-    Batches = Struct.new(:path, :get_batch_by_external_id, keyword_init: true)
+    Paths = Struct.new(
+      :v1,
+      keyword_init: true
+    )
+    NamespaceV1 = Struct.new(
+      :addresses,
+      :batches,
+      :carriers_accounts,
+      :carriers,
+      keyword_init: true
+    )
+    Addresses = Struct.new(
+      :parse_address,
+      :validate_address,
+      keyword_init: true
+    )
+    Batches = Struct.new(
+      :root,
+      :get_batch_by_external_id,
+      keyword_init: true
+    )
+    CarriersAccounts = Struct.new(
+      :root,
+      keyword_init: true
+    )
+    Carriers = Struct.new(
+      :root,
+      :get_batch_by_external_id,
+      keyword_init: true
+    )
 
     PATHS = Paths.new(
       v1: NamespaceV1.new(
@@ -20,9 +46,15 @@ module ShipEngine
           validate_address: "/v1/addresses/validate",
         ),
         batches: Batches.new(
-          path: "/v1/batches",
+          root: "/v1/batches",
           get_batch_by_external_id: "/v1/batches/external_batch_id",
-        )
+        ),
+        carriers_accounts: CarriersAccounts.new(
+          root: "/v1/connections/carriers",
+        ),
+        carriers: Carriers.new(
+          root: "/v1/carriers",
+        ),
       )
     )
 

@@ -11,7 +11,23 @@ RSpec.configure do |config|
   # Disable RSpec exposing methods globally on `Module` and `main`
   config.disable_monkey_patching!
 
+  config.before(:each) do
+    cleanup
+  end
+
   config.expect_with(:rspec) do |c|
     c.syntax = :expect
+  end
+
+  private
+
+  def cleanup
+    ShipEngine.configure do |conf|
+      conf.api_key = ShipEngine::Constants::API_KEY
+      conf.base_url = ShipEngine::Constants::PROD_URL
+      conf.retries = ShipEngine::Constants::RETRIES
+      conf.timeout = ShipEngine::Constants::TIMEOUT
+      conf.page_size = ShipEngine::Constants::PAGE_SIZE
+    end
   end
 end

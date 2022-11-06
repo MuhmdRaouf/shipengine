@@ -73,7 +73,7 @@ RSpec.describe(ShipEngine::Domain::Batches) do
 
       request = stub_request(
         :get,
-        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.path}"
+        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.root}"
       ).with(body: params).to_return(status: 200, body: expected_response.to_json)
 
       response = batches.list_batches(params: params)
@@ -141,7 +141,7 @@ RSpec.describe(ShipEngine::Domain::Batches) do
 
       request = stub_request(
         :post,
-        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.path}"
+        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.root}"
       ).with(body: params).to_return(status: 200, body: expected_response.to_json)
 
       response = batches.create_batch(params: params)
@@ -253,7 +253,7 @@ RSpec.describe(ShipEngine::Domain::Batches) do
 
       request = stub_request(
         :delete,
-        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.path}/#{batch_id}"
+        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.root}/#{batch_id}"
       ).with(body: params).to_return(status: 204)
 
       response = batches.delete_batch_by_id(batch_id: batch_id)
@@ -310,7 +310,7 @@ RSpec.describe(ShipEngine::Domain::Batches) do
 
       request = stub_request(
         :get,
-        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.path}/#{batch_id}"
+        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.root}/#{batch_id}"
       ).with(body: params).to_return(status: 200, body: expected_response.to_json)
 
       response = batches.batch_by_id(batch_id: batch_id)
@@ -347,7 +347,7 @@ RSpec.describe(ShipEngine::Domain::Batches) do
 
       request = stub_request(
         :put,
-        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.path}/#{batch_id}"
+        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.root}/#{batch_id}"
       ).with(body: params).to_return(status: 204)
 
       response = batches.update_batch_by_id(batch_id: batch_id)
@@ -369,7 +369,7 @@ RSpec.describe(ShipEngine::Domain::Batches) do
 
       request = stub_request(
         :post,
-        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.path}/#{batch_id}/add"
+        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.root}/#{batch_id}/add"
       ).with(body: params).to_return(status: 204)
 
       response = batches.add_to_batch(batch_id: batch_id, params: params)
@@ -396,7 +396,7 @@ RSpec.describe(ShipEngine::Domain::Batches) do
 
       request = stub_request(
         :get,
-        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.path}/#{batch_id}/errors"
+        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.root}/#{batch_id}/errors"
       ).with(body: params).to_return(status: 200, body: expected_response.to_json)
 
       response = batches.batch_errors(batch_id: batch_id)
@@ -424,7 +424,7 @@ RSpec.describe(ShipEngine::Domain::Batches) do
 
       request = stub_request(
         :post,
-        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.path}/#{batch_id}/process/labels"
+        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.root}/#{batch_id}/process/labels"
       ).with(body: params).to_return(status: 204)
 
       response = batches.process_batch_id_labels(batch_id: batch_id, params: params)
@@ -446,7 +446,7 @@ RSpec.describe(ShipEngine::Domain::Batches) do
 
       request = stub_request(
         :post,
-        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.path}/#{batch_id}/remove"
+        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.root}/#{batch_id}/remove"
       ).with(body: params).to_return(status: 204)
 
       response = batches.remove_from_batch(batch_id: batch_id, params: params)
