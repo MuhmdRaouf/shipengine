@@ -11,7 +11,6 @@ RSpec.describe(ShipEngine::Client) do
       country: "US",
     }]
   end
-
   let(:expected_response) do
     {
       request_id: "3f592c95-9574-49ba-86a0-bc49771834f9",
@@ -28,7 +27,7 @@ RSpec.describe(ShipEngine::Client) do
     WebMock.reset!
   end
 
-  context ShipEngine::Exceptions do
+  context ShipEngine::Exceptions::ShipEngineError do
     it "should handle status code 400" do
       request = stub_request(
         :post,
@@ -122,7 +121,49 @@ RSpec.describe(ShipEngine::Client) do
       expect do
         addresses.validate_address(params)
       end.to(raise_error(ShipEngine::Exceptions::RateLimitError))
-      assert_requested(request, times: 2)
+      assert_requested(request, times: 2) # first time + 1 retry
+    end
+  end
+
+  context ShipEngine::Exceptions::RateLimitError do
+    it "should retry once again on a 429 (default)" do
+      request = stub_request(
+        :post,
+        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.addresses.validate_address}"
+      ).with(body: params).to_return(status: 429, body: expected_response.to_json)
+
+      expect do
+        addresses.validate_address(params)
+      end.to(raise_error(ShipEngine::Exceptions::RateLimitError))
+      assert_requested(request, times: 2) # first time + 1 retry
+    end
+
+    it "should retry 5 times again on a 429" do
+      ShipEngine.configure { |config| config.retries = 5 }
+
+      request = stub_request(
+        :post,
+        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.addresses.validate_address}"
+      ).with(body: params).to_return(status: 429, body: expected_response.to_json)
+
+      expect do
+        addresses.validate_address(params)
+      end.to(raise_error(ShipEngine::Exceptions::RateLimitError))
+      assert_requested(request, times: 6) # first time + 5 retries
+    end
+
+    it "should not retry again on a 429" do
+      ShipEngine.configure { |config| config.retries = 0 }
+
+      request = stub_request(
+        :post,
+        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.addresses.validate_address}"
+      ).with(body: params).to_return(status: 429, body: expected_response.to_json)
+
+      expect do
+        addresses.validate_address(params)
+      end.to(raise_error(ShipEngine::Exceptions::RateLimitError))
+      assert_requested(request, times: 1) # first time only
     end
   end
 end
