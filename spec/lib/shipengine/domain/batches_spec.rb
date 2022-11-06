@@ -216,7 +216,7 @@ RSpec.describe(ShipEngine::Domain::Batches) do
 
       request = stub_request(
         :get,
-        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.get_batch_by_external_id}/#{external_batch_id}"
+        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.batch_by_external_id}/#{external_batch_id}"
       ).with(body: params).to_return(status: 200, body: expected_response.to_json)
 
       response = batches.batch_by_external_id(external_batch_id: external_batch_id)

@@ -18,6 +18,7 @@ module ShipEngine
       :carriers_accounts,
       :carriers,
       :shipsurance,
+      :labels,
       keyword_init: true
     )
     Addresses = Struct.new(
@@ -27,7 +28,7 @@ module ShipEngine
     )
     Batches = Struct.new(
       :root,
-      :get_batch_by_external_id,
+      :batch_by_external_id,
       keyword_init: true
     )
     CarriersAccounts = Struct.new(
@@ -36,13 +37,19 @@ module ShipEngine
     )
     Carriers = Struct.new(
       :root,
-      :get_batch_by_external_id,
       keyword_init: true
     )
     Shipsurance = Struct.new(
       :root,
       :add_funds,
       :balance,
+      keyword_init: true
+    )
+    Labels = Struct.new(
+      :root,
+      :label_by_external_shipment_id,
+      :purchase_label_with_rate_id,
+      :purchase_label_with_shipment_id,
       keyword_init: true
     )
 
@@ -54,7 +61,7 @@ module ShipEngine
         ),
         batches: Batches.new(
           root: "/v1/batches",
-          get_batch_by_external_id: "/v1/batches/external_batch_id",
+          batch_by_external_id: "/v1/batches/external_batch_id",
         ),
         carriers_accounts: CarriersAccounts.new(
           root: "/v1/connections/carriers",
@@ -66,6 +73,12 @@ module ShipEngine
           root: "/v1/connections/insurance/shipsurance",
           add_funds: "/v1/insurance/shipsurance/add_funds",
           balance: "/v1/insurance/shipsurance/balance",
+        ),
+        labels: Labels.new(
+          root: "/v1/labels",
+          label_by_external_shipment_id: "/v1/labels/external_shipment_id",
+          purchase_label_with_rate_id: "/v1/labels/rates",
+          purchase_label_with_shipment_id: "/v1/labels/shipment",
         ),
       )
     )

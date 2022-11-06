@@ -29,7 +29,7 @@ module ShipEngine
 
       def batch_by_external_id(external_batch_id:, params: {})
         response = @client.get(
-          path: "#{ShipEngine::Constants::PATHS.v1.batches.get_batch_by_external_id}/#{external_batch_id}",
+          path: "#{ShipEngine::Constants::PATHS.v1.batches.batch_by_external_id}/#{external_batch_id}",
           options: params
         )
 

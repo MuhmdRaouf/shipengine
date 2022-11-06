@@ -3,8 +3,11 @@
 module ShipEngine
   module Enums
     module AddressResidentialIndicatorTypes
+
       UNKNOWN = "unknown"
+
       YES = "yes"
+
       NO = "no"
 
       ALL = [
