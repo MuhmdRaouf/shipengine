@@ -17,6 +17,7 @@ module ShipEngine
       :batches,
       :carriers_accounts,
       :carriers,
+      :shipsurance,
       keyword_init: true
     )
     Addresses = Struct.new(
@@ -38,6 +39,12 @@ module ShipEngine
       :get_batch_by_external_id,
       keyword_init: true
     )
+    Shipsurance = Struct.new(
+      :root,
+      :add_funds,
+      :balance,
+      keyword_init: true
+    )
 
     PATHS = Paths.new(
       v1: NamespaceV1.new(
@@ -54,6 +61,11 @@ module ShipEngine
         ),
         carriers: Carriers.new(
           root: "/v1/carriers",
+        ),
+        shipsurance: Shipsurance.new(
+          root: "/v1/connections/insurance/shipsurance",
+          add_funds: "/v1/insurance/shipsurance/add_funds",
+          balance: "/v1/insurance/shipsurance/balance",
         ),
       )
     )

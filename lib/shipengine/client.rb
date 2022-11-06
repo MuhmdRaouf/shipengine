@@ -21,6 +21,10 @@ module ShipEngine
       request(method: :put, path: path, options: options)
     end
 
+    def patch(path:, options: {})
+      request(method: :patch, path: path, options: options)
+    end
+
     # Perform an HTTP DELETE request
     def delete(path:, options: {})
       request(method: :delete, path: path, options: options)
@@ -57,7 +61,7 @@ module ShipEngine
       create_connection.send(method) do |request|
         if [:get, :delete].include?(method)
           request.url(path, options)
-        elsif [:post, :put].include?(method)
+        elsif [:post, :put, :patch].include?(method)
           request.path = path
           request.body = options if !options.nil? && !options.empty?
         end
