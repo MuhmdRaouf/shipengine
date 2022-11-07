@@ -21,6 +21,7 @@ module ShipEngine
       :labels,
       :manifests,
       :package_pickups,
+      :package_types,
       :warehouses,
       :webhooks,
       keyword_init: true
@@ -62,6 +63,10 @@ module ShipEngine
       keyword_init: true
     )
     PackagePickups = Struct.new(
+      :root,
+      keyword_init: true
+    )
+    PackageTypes = Struct.new(
       :root,
       keyword_init: true
     )
@@ -107,6 +112,9 @@ module ShipEngine
         ),
         package_pickups: PackagePickups.new(
           root: "/v1/pickups",
+        ),
+        package_types: PackageTypes.new(
+          root: "/v1/packages",
         ),
         warehouses: Warehouses.new(
           root: "/v1/warehouses",
