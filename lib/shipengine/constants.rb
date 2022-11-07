@@ -27,6 +27,7 @@ module ShipEngine
       :shipments,
       :tags,
       :tokens,
+      :tracking,
       :warehouses,
       :webhooks,
       keyword_init: true
@@ -97,6 +98,10 @@ module ShipEngine
       :root,
       keyword_init: true
     )
+    Tracking = Struct.new(
+      :root,
+      keyword_init: true
+    )
     Warehouses = Struct.new(
       :root,
       keyword_init: true
@@ -159,6 +164,9 @@ module ShipEngine
         ),
         tokens: Tokens.new(
           root: "/v1/tokens/ephemeral",
+        ),
+        tracking: Tracking.new(
+          root: "/v1/tracking",
         ),
         warehouses: Warehouses.new(
           root: "/v1/warehouses",
