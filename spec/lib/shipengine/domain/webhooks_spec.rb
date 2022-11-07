@@ -17,7 +17,7 @@ RSpec.describe(ShipEngine::Domain::Webhooks) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.webhooks.root}"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = webhooks.list_webhooks
 
@@ -69,7 +69,7 @@ RSpec.describe(ShipEngine::Domain::Webhooks) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.webhooks.root}/#{webhook_id}"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = webhooks.webhook_by_id(webhook_id: webhook_id, params: params)
 

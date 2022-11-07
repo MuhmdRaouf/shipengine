@@ -26,7 +26,7 @@ RSpec.describe(ShipEngine::Domain::PackageTypes) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.package_types.root}"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = package_types.list_custom_package_types
 
@@ -110,7 +110,7 @@ RSpec.describe(ShipEngine::Domain::PackageTypes) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.package_types.root}/#{package_id}"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = package_types.custom_package_types_by_id(package_id: package_id, params: params)
 

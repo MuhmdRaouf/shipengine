@@ -67,7 +67,7 @@ RSpec.describe(ShipEngine::Domain::CarriersAccounts) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.carriers_accounts.root}/#{ShipEngine::Enums::CarrierNames::STAMPS_COM}/#{carrier_id}/settings"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = carriers_accounts.carrier_settings(
         carrier_name: ShipEngine::Enums::CarrierNames::STAMPS_COM,

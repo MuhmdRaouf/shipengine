@@ -74,7 +74,7 @@ RSpec.describe(ShipEngine::Domain::Batches) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.root}"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = batches.list_batches(params: params)
 
@@ -217,7 +217,7 @@ RSpec.describe(ShipEngine::Domain::Batches) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.batch_by_external_id}/#{external_batch_id}"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = batches.batch_by_external_id(external_batch_id: external_batch_id)
 
@@ -311,7 +311,7 @@ RSpec.describe(ShipEngine::Domain::Batches) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.root}/#{batch_id}"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = batches.batch_by_id(batch_id: batch_id)
 
@@ -397,7 +397,7 @@ RSpec.describe(ShipEngine::Domain::Batches) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.batches.root}/#{batch_id}/errors"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = batches.batch_errors(batch_id: batch_id)
 

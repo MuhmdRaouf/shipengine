@@ -78,7 +78,7 @@ RSpec.describe(ShipEngine::Domain::Shipsurance) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.shipsurance.balance}"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = shipsurance.get_insurance_funds_balance(params: params)
 

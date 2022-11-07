@@ -45,7 +45,7 @@ RSpec.describe(ShipEngine::Domain::Warehouses) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.warehouses.root}"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = warehouses.list_warehouses
 
@@ -222,7 +222,7 @@ RSpec.describe(ShipEngine::Domain::Warehouses) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.warehouses.root}/#{warehouse_id}"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = warehouses.warehouse_by_id(warehouse_id: warehouse_id, params: params)
 

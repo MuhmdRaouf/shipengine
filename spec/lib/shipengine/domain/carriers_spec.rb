@@ -61,7 +61,7 @@ RSpec.describe(ShipEngine::Domain::Carriers) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.carriers.root}"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = carriers.list_carriers(params: params)
 
@@ -158,7 +158,7 @@ RSpec.describe(ShipEngine::Domain::Carriers) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.carriers.root}/#{carrier_id}"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = carriers.carrier_by_id(carrier_id: carrier_id, params: params)
 
@@ -245,7 +245,7 @@ RSpec.describe(ShipEngine::Domain::Carriers) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.carriers.root}/#{carrier_id}/options"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = carriers.carrier_options(carrier_id: carrier_id, params: params)
 
@@ -281,7 +281,7 @@ RSpec.describe(ShipEngine::Domain::Carriers) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.carriers.root}/#{carrier_id}/packages"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = carriers.list_carrier_package_types(carrier_id: carrier_id, params: params)
 
@@ -320,7 +320,7 @@ RSpec.describe(ShipEngine::Domain::Carriers) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.carriers.root}/#{carrier_id}/services"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = carriers.list_carrier_services(carrier_id: carrier_id, params: params)
 

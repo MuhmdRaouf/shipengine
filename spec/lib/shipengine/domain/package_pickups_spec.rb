@@ -71,7 +71,7 @@ RSpec.describe(ShipEngine::Domain::PackagePickups) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.package_pickups.root}"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = package_pickups.list_package_pickups
 
@@ -256,7 +256,7 @@ RSpec.describe(ShipEngine::Domain::PackagePickups) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.package_pickups.root}/#{pickup_id}"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = package_pickups.pickup_by_id(pickup_id: pickup_id, params: params)
 

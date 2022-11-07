@@ -49,7 +49,7 @@ RSpec.describe(ShipEngine::Domain::Manifests) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.manifests.root}"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = manifests.list_manifests
 
@@ -166,7 +166,7 @@ RSpec.describe(ShipEngine::Domain::Manifests) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.manifests.root}/#{manifest_id}"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = manifests.manifest_by_id(manifest_id: manifest_id, params: params)
 
@@ -219,7 +219,7 @@ RSpec.describe(ShipEngine::Domain::Manifests) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.manifests.manifest_request}/#{manifest_request_id}"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = manifests.manifest_request_by_id(manifest_request_id: manifest_request_id, params: params)
 

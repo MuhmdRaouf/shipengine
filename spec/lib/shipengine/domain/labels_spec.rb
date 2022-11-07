@@ -124,7 +124,7 @@ RSpec.describe(ShipEngine::Domain::Labels) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.labels.root}"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = labels.list_labels(params: params)
 
@@ -616,7 +616,7 @@ RSpec.describe(ShipEngine::Domain::Labels) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.labels.label_by_external_shipment_id}/#{shipment_id}"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = labels.label_by_external_shipment_id(shipment_id: shipment_id, params: params)
 
@@ -1129,7 +1129,7 @@ RSpec.describe(ShipEngine::Domain::Labels) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.labels.root}/#{label_id}"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = labels.label_by_id(label_id: label_id, params: params)
 
@@ -1418,7 +1418,7 @@ RSpec.describe(ShipEngine::Domain::Labels) do
       request = stub_request(
         :get,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.labels.root}/#{label_id}/track"
-      ).with(body: params).to_return(status: 200, body: expected_response.to_json)
+      ).with(query: params).to_return(status: 200, body: expected_response.to_json)
 
       response = labels.label_tracking_information(label_id: label_id, params: params)
 
