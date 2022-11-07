@@ -25,6 +25,7 @@ module ShipEngine
       :rates,
       :service_points,
       :shipments,
+      :tags,
       :warehouses,
       :webhooks,
       keyword_init: true
@@ -87,6 +88,10 @@ module ShipEngine
       :parse_shipping_info,
       keyword_init: true
     )
+    Tags = Struct.new(
+      :root,
+      keyword_init: true
+    )
     Warehouses = Struct.new(
       :root,
       keyword_init: true
@@ -143,6 +148,9 @@ module ShipEngine
           root: "/v1/shipments",
           shipment_by_external_id: "/v1/shipments/external_shipment_id",
           parse_shipping_info: "/v1/shipments/recognize",
+        ),
+        tags: Tags.new(
+          root: "/v1/tags",
         ),
         warehouses: Warehouses.new(
           root: "/v1/warehouses",
