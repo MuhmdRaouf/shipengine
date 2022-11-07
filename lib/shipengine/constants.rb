@@ -19,6 +19,7 @@ module ShipEngine
       :carriers,
       :shipsurance,
       :labels,
+      :manifests,
       :warehouses,
       :webhooks,
       keyword_init: true
@@ -62,6 +63,11 @@ module ShipEngine
       :root,
       keyword_init: true
     )
+    Manifests = Struct.new(
+      :root,
+      :manifest_request,
+      keyword_init: true
+    )
 
     PATHS = Paths.new(
       v1: NamespaceV1.new(
@@ -89,6 +95,10 @@ module ShipEngine
           label_by_external_shipment_id: "/v1/labels/external_shipment_id",
           purchase_label_with_rate_id: "/v1/labels/rates",
           purchase_label_with_shipment_id: "/v1/labels/shipment",
+        ),
+        manifests: Manifests.new(
+          root: "/v1/manifests",
+          manifest_request: "/v1/manifests/requests",
         ),
         warehouses: Warehouses.new(
           root: "/v1/warehouses",
