@@ -20,6 +20,7 @@ module ShipEngine
       :shipsurance,
       :labels,
       :warehouses,
+      :webhooks,
       keyword_init: true
     )
     Addresses = Struct.new(
@@ -57,6 +58,10 @@ module ShipEngine
       :root,
       keyword_init: true
     )
+    Webhooks = Struct.new(
+      :root,
+      keyword_init: true
+    )
 
     PATHS = Paths.new(
       v1: NamespaceV1.new(
@@ -87,6 +92,9 @@ module ShipEngine
         ),
         warehouses: Warehouses.new(
           root: "/v1/warehouses",
+        ),
+        webhooks: Webhooks.new(
+          root: "/v1/environment/webhooks",
         )
       )
     )

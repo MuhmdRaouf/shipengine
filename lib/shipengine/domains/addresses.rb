@@ -26,7 +26,7 @@ module ShipEngine
           options: clean_addresses
         )
 
-        response.body.map { |result| Hashie::Mash.new(result) }
+        response.body.map { |address| Hashie::Mash.new(address) }
       end
     end
   end
