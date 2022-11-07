@@ -23,6 +23,7 @@ module ShipEngine
       :package_pickups,
       :package_types,
       :rates,
+      :service_points,
       :warehouses,
       :webhooks,
       keyword_init: true
@@ -75,6 +76,10 @@ module ShipEngine
       :root,
       keyword_init: true
     )
+    ServicePoints = Struct.new(
+      :root,
+      keyword_init: true
+    )
     Warehouses = Struct.new(
       :root,
       keyword_init: true
@@ -123,6 +128,9 @@ module ShipEngine
         ),
         rates: Rates.new(
           root: "/v1/rates",
+        ),
+        service_points: ServicePoints.new(
+          root: "/v1/service_points",
         ),
         warehouses: Warehouses.new(
           root: "/v1/warehouses",
