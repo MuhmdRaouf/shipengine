@@ -20,6 +20,7 @@ module ShipEngine
       :shipsurance,
       :labels,
       :manifests,
+      :package_pickups,
       :warehouses,
       :webhooks,
       keyword_init: true
@@ -55,17 +56,21 @@ module ShipEngine
       :purchase_label_with_shipment_id,
       keyword_init: true
     )
+    Manifests = Struct.new(
+      :root,
+      :manifest_request,
+      keyword_init: true
+    )
+    PackagePickups = Struct.new(
+      :root,
+      keyword_init: true
+    )
     Warehouses = Struct.new(
       :root,
       keyword_init: true
     )
     Webhooks = Struct.new(
       :root,
-      keyword_init: true
-    )
-    Manifests = Struct.new(
-      :root,
-      :manifest_request,
       keyword_init: true
     )
 
@@ -99,6 +104,9 @@ module ShipEngine
         manifests: Manifests.new(
           root: "/v1/manifests",
           manifest_request: "/v1/manifests/requests",
+        ),
+        package_pickups: PackagePickups.new(
+          root: "/v1/pickups",
         ),
         warehouses: Warehouses.new(
           root: "/v1/warehouses",
