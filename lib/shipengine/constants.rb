@@ -24,6 +24,7 @@ module ShipEngine
       :package_types,
       :rates,
       :service_points,
+      :shipments,
       :warehouses,
       :webhooks,
       keyword_init: true
@@ -80,6 +81,12 @@ module ShipEngine
       :root,
       keyword_init: true
     )
+    Shipments = Struct.new(
+      :root,
+      :shipment_by_external_id,
+      :parse_shipping_info,
+      keyword_init: true
+    )
     Warehouses = Struct.new(
       :root,
       keyword_init: true
@@ -131,6 +138,11 @@ module ShipEngine
         ),
         service_points: ServicePoints.new(
           root: "/v1/service_points",
+        ),
+        shipments: Shipments.new(
+          root: "/v1/shipments",
+          shipment_by_external_id: "/v1/shipments/external_shipment_id",
+          parse_shipping_info: "/v1/shipments/recognize",
         ),
         warehouses: Warehouses.new(
           root: "/v1/warehouses",
