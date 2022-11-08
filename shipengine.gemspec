@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "shipengine/version"
 
 Gem::Specification.new do |spec|
-  spec.name                   = "shipengine"
+  spec.name                   = "shipengine_ruby"
   spec.summary                = "Ruby SDK for ShipEngine"
   spec.homepage               = "https://github.com/MuhmdRaouf/shipengine"
   spec.license                = "MIT"
