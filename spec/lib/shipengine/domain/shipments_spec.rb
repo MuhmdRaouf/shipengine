@@ -2263,7 +2263,7 @@ RSpec.describe(ShipEngine::Domain::Shipments) do
       expected_response = {}
 
       request = stub_request(
-        :delete,
+        :put,
         "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.shipments.root}/#{shipment_id}"
       ).with(body: params).to_return(status: 204, body: expected_response.to_json)
 

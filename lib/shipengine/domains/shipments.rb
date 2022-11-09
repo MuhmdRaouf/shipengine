@@ -64,7 +64,7 @@ module ShipEngine
       end
 
       def cancel_shipment_by_id(shipment_id:, params: {})
-        response = @client.delete(
+        response = @client.put(
           path: "#{ShipEngine::Constants::PATHS.v1.shipments.root}/#{shipment_id}",
           options: params
         )
