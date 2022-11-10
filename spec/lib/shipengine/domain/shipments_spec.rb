@@ -2264,7 +2264,7 @@ RSpec.describe(ShipEngine::Domain::Shipments) do
 
       request = stub_request(
         :put,
-        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.shipments.root}/#{shipment_id}"
+        "#{ShipEngine::Constants::PROD_URL}#{ShipEngine::Constants::PATHS.v1.shipments.root}/#{shipment_id}/cancel"
       ).with(body: params).to_return(status: 204, body: expected_response.to_json)
 
       response = shipments.cancel_shipment_by_id(shipment_id: shipment_id, params: params)

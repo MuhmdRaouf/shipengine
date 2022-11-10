@@ -53,6 +53,15 @@ module ShipEngine
 
         Hashie::Mash.new(response.body)
       end
+
+      def process_webhook(resource_url:, params: {})
+        response = @client.get(
+          path: resource_url,
+          options: params
+        )
+
+        Hashie::Mash.new(response.body)
+      end
     end
   end
 end

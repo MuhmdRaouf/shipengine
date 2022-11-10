@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shipengine (0.0.1)
+    shipengine_ruby (0.0.5)
       faraday (~> 1.0)
       faraday_middleware (~> 1.0)
       hashie (~> 3.4)
@@ -98,14 +98,14 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.17)
-  pry
-  rake
-  rspec
+  pry (~> 0.14)
+  rake (~> 13.0)
+  rspec (~> 3.12)
   rubocop (~> 1.28)
-  rubocop-performance
-  rubocop-shopify
-  shipengine!
-  webmock
+  rubocop-performance (~> 1.13)
+  rubocop-shopify (~> 2.5)
+  shipengine_ruby!
+  webmock (~> 3.18)
 
 BUNDLED WITH
    1.17.3
