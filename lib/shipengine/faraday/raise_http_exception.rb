@@ -14,11 +14,13 @@ module ShipEngine
               source: error_source(response[:body]),
               type: error_type(response[:body]),
               code: error_code(response[:body]),
+              request_id: error_request_id(response[:body]),
               url: response[:url].to_s
             )
           elsif [429].include?(status_code)
             raise ShipEngine::Exceptions::RateLimitError.new(
               retries: env.request_headers["Retries"].to_i,
+              request_id: error_request_id(response[:body]),
               source: error_source(response[:body])
             )
           end
@@ -76,6 +78,18 @@ module ShipEngine
           nil
         elsif body["errors"] && !body["errors"].empty?
           body["errors"][0]["error_code"]
+        end
+      end
+
+      def error_request_id(body)
+        if !body.nil? && !body.empty? && body.is_a?(String)
+          body = JSON.parse(body)
+        end
+
+        if body.nil?
+          nil
+        elsif body["request_id"]
+          body["request_id"]
         end
       end
     end
